@@ -1,0 +1,56 @@
+
+
+<div class="table-responsive">
+	<table id="listTabP"
+		class="table table-bordered table-hover table-striped">
+		<thead class="thead-light">
+			<tr>
+				
+				<th scope="col">Id </th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Precio</th>
+				
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="producto: ${productosList}"> 
+				<td th:text="${producto.idproductos}"></td>
+				<td th:text="${producto.nombre}"></td>
+				<td th:text="${producto.precio}"></td>
+				<td><span
+					th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} ">
+						<a href="#" th:href="@{'/editP/'+ ${producto.idproductos}}"><i
+							class="fas fa-edit"></i></a>
+				</span> 
+				</td>
+				<td>
+				
+				<a href="#"
+					th:onclick="'javascript:confirmDelete(\''+ ${producto.idproductos} + '\');'">
+					<io0
+ 							class="fas fa-user-times"></i>
+ 						</a>
+						</span>
+						</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+
+<script type="text/javascript">
+	function confirmDelete(id) {
+		$('#deleteModal').modal('show');
+		$("#userIdHiddenInput").val(id);
+	}
+
+	function deleteUser() {
+
+		var id = $("#userIdHiddenInput").val();
+		window.location = "deleteP/" + id;
+	}
+</script>
+	
+
+	
