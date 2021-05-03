@@ -1,7 +1,7 @@
 package com.jeanReb.appSpring.service;
 
 import com.jeanReb.appSpring.Exceptions.UsernameOrIdNotFound;
-import com.jeanReb.appSpring.dto.ChangePasswordForm;
+
 import com.jeanReb.appSpring.entity.User;
 
 public interface UserService {
@@ -16,7 +16,7 @@ public interface UserService {
 	
 	public void deleteUser(Long id) throws UsernameOrIdNotFound;
 	
-	public User changePassword(ChangePasswordForm form) throws Exception;
+	
 
 	public User getLoggedUser() throws Exception;
 }

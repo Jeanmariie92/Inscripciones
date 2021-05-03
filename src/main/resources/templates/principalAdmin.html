@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Inscripciones</title>
+
+<!--JQUERY-->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+
+<!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+
+<!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+<!-- Nuestro css-->
+<link rel="stylesheet" type="text/css" href="static/css/user-form.css"
+	th:href="@{/css/user-form.css}">
+
+
+
+</head>
+<body>
+
+	<div class="container rounded mt-5 p-3 mb-2 bg-secondary text-white">
+
+		<div class="bg-info rounded text-white  font-weight-light">
+			<div class="col-12 m-6 p-2 text-center ">
+				<h4>Gestionar</h4>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col m-5">
+
+				<div class="text-center bg-primary text-white rounded p-5">
+					<a href="#" th:href="@{'/profesores'}" class="text-white">
+						<h4>Profesores</h4> </a>
+				</div>
+			</div>
+
+
+			<div class="col m-5">
+
+				<div class="text-center bg-success text-white rounded p-5">
+					<a href="#" th:href="@{'/principal'}" class="text-white">
+						<h4>Materias </h4></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	</div>
+	</div>
+
+
+
+</body>
+</html>

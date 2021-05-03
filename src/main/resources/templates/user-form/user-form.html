@@ -1,11 +1,9 @@
 <div th:with="disableFields=!${editMode} and ${#authorization.expression('hasRole(''ROLE_USER'')')}">
 <form class="form" role="form" autocomplete="off"  th:object="${userForm}" th:action="${signup}?@{/signup}:(${editMode} ?@{/editUser} :@{/userForm})" method="post">
-	<!--Es necesario para poder pasar la validacion del Model-->
+
 	<input class="form-control" type=hidden th:field="${userForm.id}"  th:if="${editMode}">
 	<input class="form-control" type=hidden name="password" value="xxxx" th:if="${editMode}">
-	<!--quita el comentario si quieres mantener la validacion @NotBlank del campo confirmPassword
-		 <input class="form-control" type=hidden name="confirmPassword" value="xxxx" th:if="${editMode}">
-	 -->
+	
 	 
 	<div class="form-group row">
 	<input class="form-control" type=hidden th:field="${userForm.id}" th:if="${editMode}" th:disabled="${disableFields}">

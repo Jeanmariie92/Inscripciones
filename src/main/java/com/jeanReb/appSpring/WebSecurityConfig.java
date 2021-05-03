@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.jeanReb.appSpring.service.UserDetailsServiceImpl;
@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .formLogin()
             .loginPage("/login")
             .permitAll()
-            .defaultSuccessUrl("/userForm")
+            .defaultSuccessUrl("/default")
             .failureUrl("/login?error=true")
             .usernameParameter("username")
             .passwordParameter("password")
@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
-    	//Especificar el encargado del login y encriptacion del password
+    	
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 }

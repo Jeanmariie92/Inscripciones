@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -60,8 +62,24 @@ public class User implements Serializable{
 		,inverseJoinColumns=@JoinColumn(name="role_id"))
 	private Set<Role> roles;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Subject subjects;
+	
+	
+	
 	public User() {	}
 	
+	
+	public Subject getSubjects() {
+		return subjects;
+	}
+
+
+	public void setSubjects(Subject scbc) {
+		this.subjects = scbc;
+	}
+
+
 	public User(Long id) {
 		this.id = id;
 	}
@@ -123,6 +141,9 @@ public class User implements Serializable{
 	}
 
 
+	
+
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -149,6 +170,7 @@ public class User implements Serializable{
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -196,6 +218,11 @@ public class User implements Serializable{
 			if (other.roles != null)
 				return false;
 		} else if (!roles.equals(other.roles))
+			return false;
+		if (subjects == null) {
+			if (other.subjects != null)
+				return false;
+		} else if (!subjects.equals(other.subjects))
 			return false;
 		if (username == null) {
 			if (other.username != null)

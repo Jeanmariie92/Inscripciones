@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jeanReb.appSpring.Exceptions.CustomeFieldValidationException;
 import com.jeanReb.appSpring.Exceptions.UsernameOrIdNotFound;
-import com.jeanReb.appSpring.dto.ChangePasswordForm;
+
 import com.jeanReb.appSpring.entity.User;
 import com.jeanReb.appSpring.repository.UserRepository;
 
@@ -75,7 +75,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(Long id) throws UsernameOrIdNotFound {
 		
-		return repository.findById(id).orElseThrow(() -> new UsernameOrIdNotFound("El usuario no existe"));
+		return repository.findById(id).orElseThrow(() ->
+		new UsernameOrIdNotFound("El usuario no existe"));
 	
 	}
 
@@ -129,26 +130,7 @@ public class UserServiceImpl implements UserService {
 			return roles != null ?true :false;
 		}
 		
-	@Override
-	public User changePassword(ChangePasswordForm form) throws Exception{
-User user = getUserById(form.getId());
-		
-		if ( !isLoggedUserADMIN() && !user.getPassword().equals(form.getCurrentPassword())) {
-			throw new Exception ("Current Password invalido.");
-		}
-		
-		if( user.getPassword().equals(form.getNewPassword())) {
-			throw new Exception ("Nuevo debe ser diferente al password actual.");
-		}
-		
-		if( !form.getNewPassword().equals(form.getConfirmPassword())) {
-			throw new Exception ("Nuevo Password y Confirm Password no coinciden.");
-		}
-		
-		String encodePassword = bCryptPasswordEncoder.encode(form.getNewPassword());
-		user.setPassword(encodePassword);
-		return repository.save(user);
-	}
+
 	
 
 	public User getLoggedUser() throws Exception {
