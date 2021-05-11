@@ -19,7 +19,7 @@ public interface SubjectsService {
    
    public Subject updateSubject(Subject subject) throws Exception;
    
-   public Subject updateSubjectAdmin(Subject subject) throws Exception;
+   public int updateSubjectAdmin(Subject subject) throws Exception;
    
    public void deleteSubject(Long id) throws SubjectOrIdNotFound;
 }

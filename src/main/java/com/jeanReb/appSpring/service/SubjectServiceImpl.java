@@ -15,6 +15,7 @@ import com.jeanReb.appSpring.repository.Subjects;
 public class SubjectServiceImpl implements SubjectsService{
 
 	@Autowired
+	
 	Subjects repositoryS ; 
 	
 	@Override
@@ -39,28 +40,38 @@ public class SubjectServiceImpl implements SubjectsService{
 	public Subject updateSubject(Subject subject) throws Exception {
 		
 		Subject toSubject = getById(subject.getId());
-		toSubject.setQuota_max(subject.getQuota_max());
+		toSubject.setQuota_max(subject.getQuota_max() - 1);
 		return repositoryS.save(toSubject);
 	}
 
 	protected void mapSubject(Subject from, Subject to) {
 		
 		to.setQuota_max(from.getQuota_max()); 
-		
-		
+
 		
 	}
 
 
-
 	@Override
-	public Subject updateSubjectAdmin(Subject subject) throws Exception {
+	public int updateSubjectAdmin(Subject subject) throws Exception {
 		
-		Subject toSubject = getById(subject.getId());
-		toSubject.setQuota_max(subject.getQuota_max());
-		toSubject.setName(subject.getName());
-		toSubject.setTeacher(subject.getTeacher());
-		return repositoryS.save(toSubject);
+        int res=0;
+		
+		subject = repositoryS.save(subject);
+		
+		if(!subject.equals(null)) {
+			res=1;
+			
+		}
+		return res;
+		
+		/*
+		 * Subject toSubject = getById(subject.getId());
+		 * toSubject.setQuota_max(subject.getQuota_max());
+		 * toSubject.setName(subject.getName());
+		 * toSubject.setTeacher(subject.getTeacher()); return
+		 * repositoryS.save(toSubject);
+		 */
 	}
 
 

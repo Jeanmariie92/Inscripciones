@@ -3,7 +3,7 @@ package com.jeanReb.appSpring.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -90,6 +90,7 @@ public class ControllerI {
 
 	   model.addAttribute("subject" , new Subject());
 	   model.addAttribute("profesores", repositoryT.findAll());
+	   model.addAttribute("inscriptionMode", "false");
 	   return "materia-form";
 
 	}
@@ -127,8 +128,9 @@ return "nuevoP";
 	public String editarMateria(Model model, @PathVariable (name = "id")Long id) throws Exception{
 		
 	Subject sucjectAdmin = service.getById(id);
+	 model.addAttribute("profesores", repositoryT.findAll());
 	model.addAttribute("subject", sucjectAdmin );
-	
+	model.addAttribute("inscriptionMode", "false");
 	
 	return "materia-form";
 
@@ -141,18 +143,30 @@ return "nuevoP";
 	Subject subjectToEdit = service.getById(id);
 	
 	
-	model.addAttribute("subject", subjectToEdit);
-		
+	 model.addAttribute("subject", subjectToEdit);
+	model.addAttribute("profesores", repositoryT.findAll()); 	
+	 model.addAttribute("inscriptionMode", "true");
+	 
      return "materia-form";
 
 
 	}
-	
-@PostMapping("/save")
-public String inscribirseUser(@Valid 
+
+@PostMapping("/inscripcion")
+public String inscripcion(
  Subject subject, Model model) throws Exception {
 
 	service.updateSubject(subject);
+	model.addAttribute("materias", repositoryS.findAll());
+	return "redirect:/principal";
+	
+}
+	
+@PostMapping("/save")
+public String inscribirseUser(
+ Subject subject, Model model) throws Exception {
+
+	service.updateSubjectAdmin(subject);
 	model.addAttribute("materias", repositoryS.findAll());
 	return "redirect:/principal";
 	
